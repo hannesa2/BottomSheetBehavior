@@ -1,0 +1,7 @@
+<resources>
+<string name="BackDropBottomSheetBehavior">info.hannes.bottomsheetanchor.BackdropBottomSheetBehavior</string>
+    <string name="BottomSheetBehaviorGoogleMapsLike">info.hannes.bottomsheetanchor.BottomSheetAnchorBehavior</string>
+    <string name="ScrollAwareFABBehavior">info.hannes.bottomsheetanchor.ScrollAwareFABBehavior</string>
+    <string name="MergedAppBarLayoutBehavior">info.hannes.bottomsheetanchor.MergedAppBarLayoutBehavior</string>
+    <string name="ScrollingAppBarLayoutBehavior">info.hannes.bottomsheetanchor.ScrollingAppBarLayoutBehavior</string>
+</resources>

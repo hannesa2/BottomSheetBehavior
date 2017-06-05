@@ -1,4 +1,4 @@
-package co.com.parsoniisolutions.custombottomsheetbehavior.sample;
+package info.hannes.bottomanchorsheetbehavior;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,17 +7,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import co.com.parsoniisolutions.custombottomsheetbehavior.R;
+class ItemPagerAdapter extends android.support.v4.view.PagerAdapter {
 
-public class ItemPagerAdapter extends android.support.v4.view.PagerAdapter {
+    private       LayoutInflater mLayoutInflater;
+    private final int[]          mItems;
 
-    Context mContext;
-    LayoutInflater mLayoutInflater;
-    final int[] mItems;
-
-    public ItemPagerAdapter(Context context, int[] items) {
-        this.mContext = context;
-        this.mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    ItemPagerAdapter(Context context, int[] items) {
+        this.mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.mItems = items;
     }
 
@@ -28,7 +24,7 @@ public class ItemPagerAdapter extends android.support.v4.view.PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view == ((LinearLayout) object);
+        return view == object;
     }
 
     @Override

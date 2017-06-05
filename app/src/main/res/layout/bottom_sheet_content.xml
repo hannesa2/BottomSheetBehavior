@@ -4,18 +4,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical"
-    android:paddingBottom="16dp"
-    android:background="@android:color/white">
+    android:paddingBottom="16dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_sheet_peek_height"
         android:background="@color/colorPrimary"
-        android:paddingTop="8dp"
-        android:paddingStart="16dp"
+        android:paddingBottom="8dp"
         android:paddingEnd="16dp"
-        android:paddingBottom="8dp">
+        android:paddingStart="16dp"
+        android:paddingTop="8dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
                 android:id="@+id/bottom_sheet_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Title dummy"
+                android:text="Title dummy XML"
                 android:textColor="@android:color/white"
                 android:textSize="19sp"/>
 
@@ -34,30 +34,30 @@
                 android:id="@+id/text_dummy1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="Text dummy 1234 1234"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
-                android:layout_marginTop="5dp"/>
+                android:textSize="12sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="Text dummy qwer asdf zxcv"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
-                android:layout_marginTop="5dp"/>
+                android:textSize="12sp"/>
 
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5 min"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:paddingTop="8dp"/>
+            android:paddingTop="8dp"
+            android:text="5 min"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"/>
 
     </RelativeLayout>
 
@@ -65,12 +65,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:background="@drawable/border_bottom"
         android:gravity="center_horizontal"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:orientation="horizontal"
         android:paddingBottom="12dp"
-        android:background="@drawable/border_bottom">
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -80,16 +80,16 @@
                 android:id="@+id/button1"
                 android:layout_width="70dp"
                 android:layout_height="60dp"
-                android:src="@android:drawable/ic_dialog_map"
                 android:layout_centerHorizontal="true"
-                android:background="?attr/selectableItemBackgroundBorderless"/>
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_dialog_map"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:text="BUTTON 1"
-                android:textColor="@android:color/black"
-                android:layout_alignParentBottom="true"/>
+                android:textColor="@android:color/black"/>
         </RelativeLayout>
 
 
@@ -97,17 +97,17 @@
             android:id="@+id/establecimiento_layout_favoritos_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp">
+            android:layout_marginStart="20dp"
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/button2"
                 android:layout_width="70dp"
                 android:layout_height="60dp"
-                android:src="@android:drawable/ic_dialog_info"
                 android:layout_centerHorizontal="true"
-                android:background="?attr/selectableItemBackgroundBorderless"/>
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_dialog_info"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -124,16 +124,16 @@
                 android:id="@+id/establecimiento_share_button"
                 android:layout_width="70dp"
                 android:layout_height="60dp"
-                android:src="@android:drawable/ic_menu_share"
                 android:layout_centerHorizontal="true"
-                android:background="?attr/selectableItemBackgroundBorderless"/>
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_menu_share"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:text="BUTTON 3"
-                android:textColor="@android:color/black"
-                android:layout_alignParentBottom="true"/>
+                android:textColor="@android:color/black"/>
         </RelativeLayout>
     </LinearLayout>
 
@@ -147,21 +147,21 @@
             android:id="@+id/establecimiento_icon_sucursales"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_secure"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="16dp"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"/>
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            app:srcCompat="@android:drawable/ic_secure"/>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_toEndOf="@id/establecimiento_icon_sucursales"
+            android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+            android:layout_toEndOf="@id/establecimiento_icon_sucursales"
+            android:orientation="vertical">
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -171,9 +171,9 @@
                     android:id="@+id/establecimiento_sucursal_row_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:text="Text dummy 1"
-                    android:layout_gravity="center_vertical"
-                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:textAllCaps="false"
                     android:textColor="@android:color/black"/>
             </FrameLayout>
@@ -185,9 +185,9 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:text="Text dummy 2"
-                    android:layout_gravity="center_vertical"
-                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:textAllCaps="false"
                     android:textColor="@android:color/black"/>
             </FrameLayout>
@@ -199,9 +199,9 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Text dummy 3"
                     android:layout_gravity="center_vertical"
                     android:background="?attr/selectableItemBackgroundBorderless"
+                    android:text="Text dummy 3"
                     android:textAllCaps="false"
                     android:textColor="@android:color/black"/>
             </FrameLayout>
@@ -213,16 +213,16 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp">
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="APACHE LICENSE"
             android:layout_gravity="center_vertical"
-            android:textSize="18sp"
-            android:textColor="@android:color/darker_gray"/>
+            android:text="APACHE LICENSE"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="18sp"/>
     </FrameLayout>
 
     <TextView
@@ -231,21 +231,21 @@
         android:layout_margin="16dp"
 
         android:text="@string/dummy_text"
-        android:textSize="12sp"
-        android:textColor="@android:color/black"/>
+        android:textColor="@android:color/black"
+        android:textSize="12sp"/>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="620dp"
-        android:background="@color/colorAccent"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="40dp"
+        android:background="@color/colorAccent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Your remaining content here"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"/>
 
     </FrameLayout>
 </LinearLayout>
