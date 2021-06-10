@@ -7,8 +7,8 @@ android {
         applicationId "com.mahc.custombottomsheet"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode getGitCommitCount()
+        versionName getTag()
     }
 
     buildTypes {
