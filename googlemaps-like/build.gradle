@@ -6,8 +6,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 1
-        versionName rootProject.bottomSheetVersion
+        versionCode getGitCommitCount()
+        versionName getTag()
     }
     buildTypes {
         release {
