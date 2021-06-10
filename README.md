@@ -1,4 +1,5 @@
-# CustomBottomSheetBehavior like Google Maps for Android [ ![Download](https://api.bintray.com/packages/mahc/maven/CustomBottomSheetBehavior/images/download.svg) ](https://bintray.com/mahc/maven/CustomBottomSheetBehavior/_latestVersion)
+# BottomSheetBehavior like Google Maps for Android
+
 Android Studio Project using Support Library focused on get Google Maps 3 states behavior including background image parallax and toolbars animations.
 
 ## Installation
@@ -56,21 +57,5 @@ Related questions:<br>
 [Open an activity or fragment with Bottom Sheet Deep Linking](http://stackoverflow.com/questions/34243928/open-an-activity-or-fragment-with-bottom-sheet-deep-linking)<br>
 [BottomSheetDialogFragment - How to set expanded height (or min top offset)](http://stackoverflow.com/questions/36030879/bottomsheetdialogfragment-how-to-set-expanded-height-or-min-top-offset)
 
-## Credits
-* [Paul-Marie Tetedoie](https://github.com/akaN44)
-* [Vit Hradecky](https://github.com/vit001)
-
 ## License
 Licensed under the Apache License, Version 2.0
-<br><br>
-The true is I don't care about license... JUST USE IT, improve it if you can and give me vote up in stack overflow :D.
-
-
-<a href="http://stackoverflow.com/users/1332549/miguelhincapiec">
-<img src="http://stackoverflow.com/users/flair/1332549.png" width="208" height="58" alt="profile for MiguelHincapieC at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for MiguelHincapieC at Stack Overflow, Q&amp;A for professional and enthusiast programmers">
-</a>
-
-<br><br>
-<a class="LI-simple-link" href="https://www.linkedin.com/in/miguelhincapie">
-<img width="208" height="58" src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Logo.svg.original.svg">
-</a>
