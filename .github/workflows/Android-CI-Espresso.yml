@@ -30,7 +30,7 @@ jobs:
       - name: Final checks
         run: ./gradlew check
       - name: Archive Lint report
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v2.2.4
         with:
           name: Lint-report
           path: app/build/reports/lint-results.html
