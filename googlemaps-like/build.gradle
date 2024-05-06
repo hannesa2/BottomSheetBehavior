@@ -4,10 +4,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion rootProject.compileSdkVersion
+    namespace 'com.mahc.custombottomsheetbehavior'
 
     defaultConfig {
         minSdkVersion rootProject.minSdkVersion
+        compileSdk rootProject.compileSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
     }
     buildTypes {
@@ -16,7 +17,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    namespace 'com.mahc.custombottomsheetbehavior'
 }
 
 dependencies {

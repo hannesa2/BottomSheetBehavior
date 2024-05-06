@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion rootProject.compileSdkVersion
-
+    namespace 'com.mahc.custombottomsheet'
     defaultConfig {
         applicationId "com.mahc.custombottomsheet"
         minSdkVersion rootProject.minSdkVersion
+        compileSdk rootProject.compileSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode getGitCommitCount()
         versionName getTag()
@@ -19,8 +19,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    namespace 'com.mahc.custombottomsheet'
-
 }
 
 dependencies {
