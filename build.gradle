@@ -23,7 +23,7 @@ ext {
     minSdkVersion = 21
 }
 
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }
 
