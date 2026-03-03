@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
         <activity
-            android:name="com.mahc.custombottomsheet.MainActivity"
+            android:name="info.hannes.bottomanchorsheetbehavior.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true">

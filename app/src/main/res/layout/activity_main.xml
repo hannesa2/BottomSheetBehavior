@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.mahc.custombottomsheet.MainActivity">
+    tools:context="info.hannes.bottomanchorsheetbehavior.MainActivity">
 
     <FrameLayout
         android:id="@+id/dummy_framelayout_replacing_map"
@@ -74,7 +74,7 @@
         android:clickable="true"
         android:focusable="true"/>
 
-    <com.mahc.custombottomsheetbehavior.MergedAppBarLayout
+    <info.hannes.custombottomsheetbehavior.MergedAppBarLayout
         android:id="@+id/mergedappbarlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

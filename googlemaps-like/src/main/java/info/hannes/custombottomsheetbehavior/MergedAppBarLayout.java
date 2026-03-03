@@ -1,14 +1,14 @@
-package com.mahc.custombottomsheetbehavior;
+package info.hannes.custombottomsheetbehavior;
 
 import android.content.Context;
 import com.google.android.material.appbar.AppBarLayout;
 
 import androidx.core.content.ContextCompat;
-import androidx.core.widget.TextViewCompat;
-import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
+
+import info.hannesa2.custombottomsheetbehavior.R;
 
 /**
  * Created by miguel.hincapie on 20/01/2018
