@@ -1,4 +1,4 @@
-package com.mahc.custombottomsheetbehavior;
+package info.hannes.custombottomsheetbehavior;
 
 import android.content.Context;
 import androidx.annotation.NonNull;

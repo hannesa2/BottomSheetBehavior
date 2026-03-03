@@ -1,4 +1,4 @@
-package com.mahc.custombottomsheetbehavior;
+package info.hannes.custombottomsheetbehavior;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -20,6 +20,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 import java.util.Vector;
+
+import info.hannesa2.custombottomsheetbehavior.R;
 
 
 public class BottomSheetBehaviorGoogleMapsLike<V extends View> extends CoordinatorLayout.Behavior<V> {

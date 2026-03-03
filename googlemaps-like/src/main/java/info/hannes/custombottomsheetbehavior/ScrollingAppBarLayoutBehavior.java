@@ -1,39 +1,42 @@
-package com.mahc.custombottomsheetbehavior;
+package info.hannes.custombottomsheetbehavior;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
-import com.google.android.material.appbar.AppBarLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.content.ContextCompat;
-import androidx.core.widget.NestedScrollView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
+
+import com.google.android.material.appbar.AppBarLayout;
+
 import java.lang.ref.WeakReference;
 
+import info.hannesa2.custombottomsheetbehavior.R;
+
 /**
- ~ Licensed under the Apache License, Version 2.0 (the "License");
- ~ you may not use this file except in compliance with the License.
- ~ You may obtain a copy of the License at
- ~
- ~      http://www.apache.org/licenses/LICENSE-2.0
- ~
- ~ Unless required by applicable law or agreed to in writing, software
- ~ distributed under the License is distributed on an "AS IS" BASIS,
- ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- ~ See the License for the specific language governing permissions and
- ~ limitations under the License.
- ~
- ~ https://github.com/miguelhincapie/CustomBottomSheetBehavior
+ * ~ Licensed under the Apache License, Version 2.0 (the "License");
+ * ~ you may not use this file except in compliance with the License.
+ * ~ You may obtain a copy of the License at
+ * ~
+ * ~      http://www.apache.org/licenses/LICENSE-2.0
+ * ~
+ * ~ Unless required by applicable law or agreed to in writing, software
+ * ~ distributed under the License is distributed on an "AS IS" BASIS,
+ * ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * ~ See the License for the specific language governing permissions and
+ * ~ limitations under the License.
+ * ~
+ * ~ https://github.com/miguelhincapie/CustomBottomSheetBehavior
  */
 
 /**
@@ -47,7 +50,7 @@ public class ScrollingAppBarLayoutBehavior extends AppBarLayout.ScrollingViewBeh
     private Context mContext;
     private boolean mVisible = true;
     /**
-     * To avoid using multiple "peekheight=" in XML and looking flexibility allowing {@link BottomSheetBehaviorGoogleMapsLike#mPeekHeight}
+     * To avoid using multiple "peekheight=" in XML and looking flexibility allowing
      * get changed dynamically we get the {@link NestedScrollView} that has
      * "app:layout_behavior=" {@link BottomSheetBehaviorGoogleMapsLike} inside the {@link CoordinatorLayout}
      */
@@ -66,8 +69,8 @@ public class ScrollingAppBarLayoutBehavior extends AppBarLayout.ScrollingViewBeh
             try {
                 BottomSheetBehaviorGoogleMapsLike.from(dependency);
                 return true;
+            } catch (IllegalArgumentException ignored) {
             }
-            catch (IllegalArgumentException e){}
         }
         return false;
     }
@@ -79,7 +82,7 @@ public class ScrollingAppBarLayoutBehavior extends AppBarLayout.ScrollingViewBeh
         }
         if (mBottomSheetBehaviorRef == null || mBottomSheetBehaviorRef.get() == null)
             getBottomSheetBehavior(parent);
-        setAppBarVisible((AppBarLayout)child,dependency.getY() >= dependency.getHeight() - mBottomSheetBehaviorRef.get().getPeekHeight());
+        setAppBarVisible((AppBarLayout) child, dependency.getY() >= dependency.getHeight() - mBottomSheetBehaviorRef.get().getPeekHeight());
         return true;
     }
 
@@ -107,7 +110,7 @@ public class ScrollingAppBarLayoutBehavior extends AppBarLayout.ScrollingViewBeh
         mVisible = (dependency.getY() >= mCollapsedY);
 
         setStatusBarBackgroundVisible(mVisible);
-        if(!mVisible) child.setY((int) child.getY() - child.getHeight() - getStatusBarHeight());
+        if (!mVisible) child.setY((int) child.getY() - child.getHeight() - getStatusBarHeight());
         mInit = true;
         /**
          * Following {@link #onDependentViewChanged} docs, we need to return true if the
@@ -117,12 +120,12 @@ public class ScrollingAppBarLayoutBehavior extends AppBarLayout.ScrollingViewBeh
         return !mVisible;
     }
 
-    public void setAppBarVisible(final AppBarLayout appBarLayout, final boolean visible){
+    public void setAppBarVisible(final AppBarLayout appBarLayout, final boolean visible) {
 
-        if(visible == mVisible)
+        if (visible == mVisible)
             return;
 
-        if(mAppBarYValueAnimator == null || !mAppBarYValueAnimator.isRunning()){
+        if (mAppBarYValueAnimator == null || !mAppBarYValueAnimator.isRunning()) {
 
             mAppBarYValueAnimator = ValueAnimator.ofFloat(
                     (int) appBarLayout.getY(),
@@ -141,13 +144,13 @@ public class ScrollingAppBarLayoutBehavior extends AppBarLayout.ScrollingViewBeh
                 @Override
                 public void onAnimationStart(Animator animation) {
                     super.onAnimationStart(animation);
-                    if(visible)
+                    if (visible)
                         setStatusBarBackgroundVisible(true);
                 }
 
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    if(!visible)
+                    if (!visible)
                         setStatusBarBackgroundVisible(false);
                     mVisible = visible;
                     super.onAnimationEnd(animation);
@@ -166,19 +169,17 @@ public class ScrollingAppBarLayoutBehavior extends AppBarLayout.ScrollingViewBeh
         return result;
     }
 
-    private void setStatusBarBackgroundVisible(boolean visible){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            if(visible){
-                Window window = ((Activity)mContext).getWindow();
-                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(ContextCompat.getColor(mContext,R.color.colorPrimaryDark));
-            }else {
-                Window window = ((Activity)mContext).getWindow();
-                window.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                window.setStatusBarColor(ContextCompat.getColor(mContext,android.R.color.transparent));
-            }
+    private void setStatusBarBackgroundVisible(boolean visible) {
+        if (visible) {
+            Window window = ((Activity) mContext).getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(mContext, R.color.colorPrimaryDark));
+        } else {
+            Window window = ((Activity) mContext).getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(ContextCompat.getColor(mContext, android.R.color.transparent));
         }
     }
 
@@ -197,8 +198,8 @@ public class ScrollingAppBarLayoutBehavior extends AppBarLayout.ScrollingViewBeh
                     BottomSheetBehaviorGoogleMapsLike temp = BottomSheetBehaviorGoogleMapsLike.from(child);
                     mBottomSheetBehaviorRef = new WeakReference<>(temp);
                     break;
+                } catch (IllegalArgumentException e) {
                 }
-                catch (IllegalArgumentException e){}
             }
         }
     }

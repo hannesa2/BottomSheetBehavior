@@ -3,9 +3,9 @@ plugins {
 }
 
 android {
-    namespace 'com.mahc.custombottomsheet'
+    namespace 'info.hannes.custombottomsheet'
     defaultConfig {
-        applicationId "com.mahc.custombottomsheet"
+        applicationId "info.hannes.custombottomsheet"
         minSdkVersion rootProject.minSdkVersion
         compileSdk rootProject.compileSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
@@ -16,7 +16,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {

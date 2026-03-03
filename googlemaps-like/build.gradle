@@ -1,10 +1,10 @@
 plugins {
-    id 'com.android.library'
-    id 'maven-publish'
+    id "com.android.library"
+    id "maven-publish"
 }
 
 android {
-    namespace 'com.mahc.custombottomsheetbehavior'
+    namespace "info.hannesa2.custombottomsheetbehavior"
 
     defaultConfig {
         minSdkVersion rootProject.minSdkVersion
@@ -14,7 +14,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
     compileOptions {
@@ -32,7 +32,7 @@ publishing {
     publications {
         release(MavenPublication) {
             afterEvaluate {
-                from components.findByName('release')
+                from components.findByName("release")
             }
         }
     }
