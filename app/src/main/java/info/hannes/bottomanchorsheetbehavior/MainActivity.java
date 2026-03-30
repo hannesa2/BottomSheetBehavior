@@ -1,4 +1,4 @@
-package com.mahc.custombottomsheet;
+package info.hannes.bottomanchorsheetbehavior;
 
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -11,9 +11,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.mahc.custombottomsheetbehavior.BottomSheetBehaviorGoogleMapsLike;
-import com.mahc.custombottomsheetbehavior.MergedAppBarLayout;
-import com.mahc.custombottomsheetbehavior.MergedAppBarLayoutBehavior;
+import info.hannes.custombottomsheet.R;
+import info.hannes.custombottomsheetbehavior.BottomSheetBehaviorGoogleMapsLike;
+import info.hannes.custombottomsheetbehavior.MergedAppBarLayout;
+import info.hannes.custombottomsheetbehavior.MergedAppBarLayoutBehavior;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -42,12 +43,9 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setTitle(" ");
         }
 
-        /**
-         * If we want to listen for states callback
-         */
-        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorlayout);
+        CoordinatorLayout coordinatorLayout = findViewById(R.id.coordinatorlayout);
         View bottomSheet = coordinatorLayout.findViewById(R.id.bottom_sheet);
-        final BottomSheetBehaviorGoogleMapsLike behavior = BottomSheetBehaviorGoogleMapsLike.from(bottomSheet);
+        final BottomSheetBehaviorGoogleMapsLike<View> behavior = BottomSheetBehaviorGoogleMapsLike.from(bottomSheet);
         behavior.addBottomSheetCallback(new BottomSheetBehaviorGoogleMapsLike.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
@@ -81,16 +79,11 @@ public class MainActivity extends AppCompatActivity {
         MergedAppBarLayout mergedAppBarLayout = findViewById(R.id.mergedappbarlayout);
         MergedAppBarLayoutBehavior mergedAppBarLayoutBehavior = MergedAppBarLayoutBehavior.from(mergedAppBarLayout);
         mergedAppBarLayoutBehavior.setToolbarTitle("Title Dummy");
-        mergedAppBarLayoutBehavior.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                behavior.setState(BottomSheetBehaviorGoogleMapsLike.STATE_ANCHOR_POINT);
-            }
-        });
+        mergedAppBarLayoutBehavior.setNavigationOnClickListener(v -> behavior.setState(BottomSheetBehaviorGoogleMapsLike.STATE_ANCHOR_POINT));
 
-        bottomSheetTextView = (TextView) bottomSheet.findViewById(R.id.bottom_sheet_title);
+        bottomSheetTextView = bottomSheet.findViewById(R.id.bottom_sheet_title);
         ItemPagerAdapter adapter = new ItemPagerAdapter(this,mDrawables);
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        ViewPager viewPager = findViewById(R.id.pager);
         viewPager.setAdapter(adapter);
 
         behavior.setState(BottomSheetBehaviorGoogleMapsLike.STATE_ANCHOR_POINT);

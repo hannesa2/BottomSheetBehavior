@@ -1,11 +1,10 @@
-package com.mahc.custombottomsheetbehavior;
+package info.hannes.custombottomsheetbehavior;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.ColorRes;
@@ -29,36 +28,20 @@ import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
 
-/**
- ~ Licensed under the Apache License, Version 2.0 (the "License");
- ~ you may not use this file except in compliance with the License.
- ~ You may obtain a copy of the License at
- ~
- ~      http://www.apache.org/licenses/LICENSE-2.0
- ~
- ~ Unless required by applicable law or agreed to in writing, software
- ~ distributed under the License is distributed on an "AS IS" BASIS,
- ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- ~ See the License for the specific language governing permissions and
- ~ limitations under the License.
- ~
- ~ https://github.com/miguelhincapie/CustomBottomSheetBehavior
- */
+import info.hannesa2.custombottomsheetbehavior.R;
 
 /**
  * This behavior should be applied on an AppBarLayout... More Explanations coming soon
  */
 public class MergedAppBarLayoutBehavior extends AppBarLayout.ScrollingViewBehavior {
 
-    private static final String TAG = MergedAppBarLayoutBehavior.class.getSimpleName();
-
     private boolean mInit = false;
 
     private FrameLayout.LayoutParams mBackGroundLayoutParams;
 
-    private Context mContext;
+    private final Context mContext;
     /**
-     * To avoid using multiple "peekheight=" in XML and looking flexibility allowing {@link BottomSheetBehaviorGoogleMapsLike#mPeekHeight}
+     * To avoid using multiple "peekheight=" in XML and looking flexibility allowing
      * get changed dynamically we get the {@link NestedScrollView} that has
      * "app:layout_behavior=" {@link BottomSheetBehaviorGoogleMapsLike} inside the {@link CoordinatorLayout}
      */
@@ -88,20 +71,17 @@ public class MergedAppBarLayoutBehavior extends AppBarLayout.ScrollingViewBehavi
                 BottomSheetBehaviorGoogleMapsLike.from(dependency);
                 return true;
             }
-            catch (IllegalArgumentException e){}
+            catch (IllegalArgumentException ignored){}
         }
         return false;
     }
 
     @Override
-    public boolean onDependentViewChanged(CoordinatorLayout parent, View child, View dependency) {
+    public boolean onDependentViewChanged(@NonNull CoordinatorLayout parent, @NonNull View child, @NonNull View dependency) {
 
         if (!mInit) {
             init(parent, child);
         }
-        /**
-         * Following docs we should return true if the Behavior changed the child view's size or position, false otherwise
-         */
         boolean childMoved = false;
 
         if(isDependencyYBelowAnchorPoint(parent, dependency)){
@@ -139,12 +119,9 @@ public class MergedAppBarLayoutBehavior extends AppBarLayout.ScrollingViewBehavi
 
     private void init(@NonNull CoordinatorLayout parent, @NonNull View child){
 
-        if (!(child instanceof MergedAppBarLayout)) throw new IllegalArgumentException("The view is not a MergedAppBarLayout");
+        if (!(child instanceof MergedAppBarLayout appBarLayout)) throw new IllegalArgumentException("The view is not a MergedAppBarLayout");
 
-        MergedAppBarLayout appBarLayout = (MergedAppBarLayout) child;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            appBarLayout.setOutlineProvider(ViewOutlineProvider.BACKGROUND);
-        }
+        appBarLayout.setOutlineProvider(ViewOutlineProvider.BACKGROUND);
 
         mToolbar = appBarLayout.toolbar;
         mBackground = appBarLayout.background;
@@ -181,11 +158,11 @@ public class MergedAppBarLayoutBehavior extends AppBarLayout.ScrollingViewBehavi
             if (child instanceof NestedScrollView) {
 
                 try {
-                    BottomSheetBehaviorGoogleMapsLike temp = BottomSheetBehaviorGoogleMapsLike.from(child);
+                    BottomSheetBehaviorGoogleMapsLike<View> temp = BottomSheetBehaviorGoogleMapsLike.from(child);
                     mBottomSheetBehaviorRef = new WeakReference<>(temp);
                     break;
                 }
-                catch (IllegalArgumentException e){}
+                catch (IllegalArgumentException ignored){}
             }
         }
     }
@@ -240,7 +217,7 @@ public class MergedAppBarLayoutBehavior extends AppBarLayout.ScrollingViewBehavi
         boolean childMoved = false;
         if(visible && !mVisible){
             childMoved = true;
-            child.setY(-child.getHeight()/3);
+            child.setY((float) -child.getHeight() /3);
             mAppBarLayoutAnimation = child.animate().setDuration(mContext.getResources().getInteger(android.R.integer.config_shortAnimTime));
             mAppBarLayoutAnimation.setListener(new AnimatorListenerAdapter() {
                 @Override
@@ -301,37 +278,27 @@ public class MergedAppBarLayoutBehavior extends AppBarLayout.ScrollingViewBehavi
 
             mTitleAlphaValueAnimator = ValueAnimator.ofFloat(startAlpha,endAlpha);
             mTitleAlphaValueAnimator.setDuration(mContext.getResources().getInteger(android.R.integer.config_shortAnimTime));
-            mTitleAlphaValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    mTitleTextView.setAlpha((Float) animation.getAnimatedValue());
-                }
-            });
+            mTitleAlphaValueAnimator.addUpdateListener(animation -> mTitleTextView.setAlpha((Float) animation.getAnimatedValue()));
             mTitleAlphaValueAnimator.start();
         }
     }
 
     private boolean isStatusBarVisible(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            return ((Activity)mContext).getWindow().getStatusBarColor() ==
-                    ContextCompat.getColor(mContext,R.color.colorPrimaryDark);
-        }
-        return true;
+        return ((Activity) mContext).getWindow().getStatusBarColor() ==
+                ContextCompat.getColor(mContext, R.color.colorPrimaryDark);
     }
 
     private void setStatusBarBackgroundVisible(boolean visible){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            if(visible){
-                Window window = ((Activity)mContext).getWindow();
-                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(ContextCompat.getColor(mContext,R.color.colorPrimaryDark));
-            }else {
-                Window window = ((Activity)mContext).getWindow();
-                window.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                window.setStatusBarColor(ContextCompat.getColor(mContext,android.R.color.transparent));
-            }
+        if (visible) {
+            Window window = ((Activity) mContext).getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(mContext, R.color.colorPrimaryDark));
+        } else {
+            Window window = ((Activity) mContext).getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(ContextCompat.getColor(mContext, android.R.color.transparent));
         }
     }
 
@@ -346,7 +313,7 @@ public class MergedAppBarLayoutBehavior extends AppBarLayout.ScrollingViewBehavi
     }
 
     @Override
-    public Parcelable onSaveInstanceState(CoordinatorLayout parent, View child) {
+    public Parcelable onSaveInstanceState(@NonNull CoordinatorLayout parent, @NonNull View child) {
         return new SavedState(super.onSaveInstanceState(parent, child),
                 mVisible,
                 mToolbarTitle,
@@ -354,7 +321,7 @@ public class MergedAppBarLayoutBehavior extends AppBarLayout.ScrollingViewBehavi
     }
 
     @Override
-    public void onRestoreInstanceState(CoordinatorLayout parent, View child, Parcelable state) {
+    public void onRestoreInstanceState(@NonNull CoordinatorLayout parent, @NonNull View child, @NonNull Parcelable state) {
         SavedState ss = (SavedState) state;
         super.onRestoreInstanceState(parent, child, ss.getSuperState());
         this.mVisible = ss.mVisible;
@@ -391,7 +358,7 @@ public class MergedAppBarLayoutBehavior extends AppBarLayout.ScrollingViewBehavi
         }
 
         public static final Parcelable.Creator<SavedState> CREATOR =
-                new Parcelable.Creator<SavedState>() {
+                new Parcelable.Creator<>() {
                     @Override
                     public SavedState createFromParcel(Parcel source) {
                         return new SavedState(source);
