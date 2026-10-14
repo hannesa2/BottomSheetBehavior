@@ -20,7 +20,7 @@ allprojects {
 ext {
     compileSdkVersion = 37
     targetSdkVersion = 37
-    minSdkVersion = 21
+    minSdkVersion = 23
 }
 
 tasks.register('clean', Delete) {
